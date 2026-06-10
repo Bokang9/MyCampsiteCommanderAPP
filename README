@@ -1,0 +1,124 @@
+# Campsite Commander – Outdoor Gear Inventory App
+
+## 🌲 Purpose of the App
+**Campsite Commander** is an Android app designed for outdoor adventure teams to manage camping gear and food supplies. It helps users create, view, and organize a packing checklist to ensure nothing gets left behind before a trip.
+
+---
+
+## 🚀 What the App Includes
+
+1. **Parallel Arrays for Data Storage**
+   - Includes 4 parallel arrays: `itemNames`, `itemCategories`, `itemQuantities`, and `itemComments`.
+
+2. **Loops for Calculations & Display**
+   - Includes a `for` loop to calculate total items packed.
+   - Uses `LazyColumn` + `itemsIndexed` loop to display the checklist.
+
+3. **Screen Navigation**
+   - Includes 4 screens: **Splash**, **Main**, **Add Gear**, and **Checklist**.
+   - Built using a sealed class `Screen` + `when` statement.
+
+4. **Splash Screen**
+   - Includes a 3-second loading screen with a logo and app title.
+
+5. **Dark Nature Theme**
+   - Includes a gradient background (`#1B262C` – `#0F4C75` – `#3282B8`) with white text.
+
+6. **Error Handling**
+   - Includes input validation for:
+     - Empty names
+     - Empty quantity
+     - Quantity less than 0
+
+---
+
+## 🗺️ How to Navigate the App
+
+1. **Splash Screen**
+   - Auto-transition after 3 seconds to the Main Screen.
+
+2. **Main Screen**
+   - Shows **“Total Items Packed”** count.
+   - **Add Gear Button**: Go to Add Gear Screen to add new items.
+   - **View Checklist Button**: Go to Checklist screen to see all items.
+
+3. **Add Gear Screen**
+   - Fill out the form: Item Name, Category (dropdown), Quantity, and Comments.
+   - **Save Gear**: Adds the item to the arrays and returns to the Main Screen.
+   - **Back to Base**: Returns to the Main Screen without saving.
+
+4. **Checklist Screen**
+   - Shows the full list with Name, Category, Quantity, and Notes for each piece of gear.
+   - **Back to Base**: Return to the Main Screen.
+
+---
+
+## 📝 Pseudocode for Campsite Commander
+
+```pseudocode
+Start Program Campsite Commander
+
+// Define parallel arrays 
+SET ItemNames = ["Tent", "Marshmallows", "Flashlight"]
+SET ItemCategories = ["Shelter", "Food", "Safety"]
+SET ItemQuantities = [1, 2, 3]
+SET ItemComments = ["4-person waterproof", "For S’mores", "Check batteries"]
+
+// Splash Screen Logic
+currentScreen = SPLASH
+
+Display app logo and title "Campsite Commander" 
+Wait 3000 milliseconds 
+Set currentScreen = MAIN
+
+// Main Screen Function
+FUNCTION MainScreen:
+    SET totalItems = 0
+    FOR EACH quantity IN ItemQuantities: 
+        totalItems = totalItems + quantity 
+    END FOR
+
+    DISPLAY "Total Items Packed: " + totalItems 
+    DISPLAY BUTTON "Add Gear" -> SET currentScreen = ADD_GEAR
+    DISPLAY BUTTON "View Checklist" -> SET currentScreen = CHECKLIST 
+END FUNCTION
+
+// Add Gear Screen Function
+FUNCTION AddGearScreen:
+    INPUT name, category, quantityText, comment
+
+    IF name IS EMPTY:
+        SHOW ERROR "Item name cannot be empty"
+        RETURN
+    END IF
+
+    IF quantityText IS EMPTY OR quantity < 0:
+        SHOW ERROR "Invalid quantity"
+        RETURN
+    END IF
+
+    // Logic to add to arrays...
+    SET currentScreen = MAIN
+END FUNCTION
+
+// App Controller (Navigation)
+WHILE app is running:
+    IF currentScreen = SPLASH: 
+        RUN SplashScreen
+    ELSE IF currentScreen = MAIN: 
+        RUN MainScreen
+    ELSE IF currentScreen = ADD_GEAR: 
+        RUN AddGearScreen
+    ELSE IF currentScreen = CHECKLIST: 
+        RUN ChecklistScreen
+END WHILE
+
+End Program
+```
+
+---
+
+## 🛠️ Technical Details
+- **Jetpack Compose UI**
+- **Automated builds and testing via GitHub Actions** (Build & Test)
+- **Automated version management** (ready to be enabled in `.github/workflows/android.yml`)
