@@ -1,0 +1,26 @@
+/.idea/assetWizardSettings.xml
+/.idea/caches
+.DS_Store
+/build
+/captures
+.externalNativeBuild
+.cxx
+
+# Build outputs
+*.apk
+*.aar
+*.ap_
+*.aab
+
+# Signing files
+*.jks
+*.keystore
+
+# Google Services (if added later)
+google-services.json
+
+# Local configuration
+.idea/deploymentTargetSelector.xml
+.idea/gradle.xml
+.idea/misc.xml
+.idea/vcs.xml
